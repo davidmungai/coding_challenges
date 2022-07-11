@@ -18,3 +18,6 @@ function newFunction(s1:string,s2:string):string {
 
     return answer;
 }
+
+
+console.log(newFunction(s1,s2))
