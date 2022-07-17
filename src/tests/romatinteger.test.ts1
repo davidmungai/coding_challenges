@@ -1,0 +1,44 @@
+//https://leetcode.com/problems/roman-to-integer/
+
+
+function romanToInt(s: string): number {
+    let mapping = new Map();
+    mapping.set("I", 1)
+    mapping.set("V", 5)
+    mapping.set("X", 10)
+    mapping.set("L", 50)
+    mapping.set("C", 100)
+    mapping.set("D", 500)
+    mapping.set("M", 1000)
+    let sArray = s.split('')
+    let prev: number = 0;
+    for (let index = 0; index < sArray.length; index++) {
+        let currentNumber: number = parseInt(mapping.get(sArray[index]));
+        if (parseInt(mapping.get(sArray[index + 1])) > currentNumber ) {
+            prev = prev - currentNumber;
+        } else {
+            prev = prev+ currentNumber;
+        }
+       
+
+    }
+    return prev
+
+};
+
+// let Input: s = "III"
+// Output: 3
+// Explanation: III = 3.
+
+
+test('III is 3', () => {
+    expect(romanToInt("III")).toBe(3);
+});
+
+test('IX is four', () => {
+    expect(romanToInt("IX")).toBe(9);
+});
+
+test('MCMXCIV is 1994', () => {
+    expect(romanToInt("MCMXCIV")).toBe(1994);
+});
